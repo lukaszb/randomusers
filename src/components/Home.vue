@@ -4,7 +4,6 @@
 
     <user-list></user-list>
 
-    <button @click="fetchMoreUsers()">Fetch more users</button>
   </div>
 </template>
 
@@ -14,10 +13,5 @@ import UserList from '@/components/UserList';
 
 export default {
   components: { UserList },
-  methods: {
-    fetchMoreUsers() {
-      this.$store.dispatch('userList/fetch');
-    },
-  },
 };
 </script>
