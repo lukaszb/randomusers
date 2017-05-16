@@ -17,6 +17,9 @@ export default {
     STOP_FETCH(state) {
       state.fetchInProgress = false;
     },
+    REMOVE_USER(state, { email }) {
+      state.users = state.users.filter(u => u.email !== email);
+    },
   },
   actions: {
     async fetch({ commit, state }) {
@@ -30,6 +33,10 @@ export default {
         console.error('Something went wrong');
       }
       commit('STOP_FETCH');
+    },
+    removeUser({ commit }, { email }) {
+      // email is not best id but it should suffice for test app
+      commit('REMOVE_USER', { email });
     },
   },
 };

@@ -16,6 +16,7 @@
               <p class="subtitle is-6">{{ user.email }}</p>
             </div>
           </div>
+          <a @click.prevent="removeUser()" class="delete"></a>
         </div>
 
       </div>
@@ -27,6 +28,11 @@
 <script>
 export default {
   props: ['user'],
+  methods: {
+    removeUser() {
+      this.$store.dispatch('userList/removeUser', { email: this.user.email });
+    },
+  },
 };
 </script>
 
@@ -34,5 +40,15 @@ export default {
 .image img {
   border: 2px solid #efe;
   border-radius: 50%;
+}
+
+.user-card .delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: none;
+}
+.user-card:hover .delete {
+  display: inline-block;
 }
 </style>
