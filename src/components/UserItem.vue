@@ -12,7 +12,7 @@
               </figure>
             </div>
             <div class="media-content">
-              <p class="title is-4">{{ user.name.title }} {{ user.name.first }} {{ user.name.last }}</p>
+              <p class="title is-4">{{ user.name.title }} {{ user.name.first|capfirst }} {{ user.name.last|capfirst }}</p>
               <p class="subtitle is-6">{{ user.email }}</p>
             </div>
           </div>
