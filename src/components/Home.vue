@@ -10,6 +10,7 @@
 
 <script>
 import UserList from '@/components/UserList';
+import sleep from '@/utils';
 import axios from 'axios';
 
 
@@ -25,7 +26,9 @@ export default {
       const count = 10;
       const url = `https://randomuser.me/api/?&nat=us,gb,fr,de&results=${count}`;
       try {
-        const response = await axios.get(url);
+        const req = axios.get(url);
+        await sleep(2000);
+        const response = await req;
         this.users = this.users.concat(response.data.results);
       } catch (error) {
         console.error('Something went wrong');
