@@ -1,13 +1,20 @@
 <template>
   <div class="user-list">
-    <user-item v-for="user in users" :user="user" :key="user.email"></user-item>
 
-    <button
-      class="button is-primary"
-      :class="{'is-loading': usersFetchInProgress}"
-      @click="fetchMoreUsers()">
-      Fetch more users
-    </button>
+    <div class="columns">
+      <div class="column">
+        <button
+          class="button is-primary"
+          :class="{'is-loading': usersFetchInProgress}"
+          @click="fetchMoreUsers()">
+          Fetch more users
+        </button>
+      </div>
+    </div>
+
+    <br/>
+
+    <user-item v-for="user in users" :user="user" :key="user.email"></user-item>
 
   </div>
 </template>
