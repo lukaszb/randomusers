@@ -30,7 +30,9 @@
 
     <br/>
 
-    <user-item v-for="user in users" :user="user" :key="user.email"></user-item>
+    <transition-group tag="div" name="user-list">
+      <user-item class="user-item" v-for="user in users" :user="user" :key="user.email"></user-item>
+    </transition-group>
 
   </div>
 </template>
@@ -67,3 +69,19 @@ export default {
   },
 };
 </script>
+
+<style>
+.user-item {
+  transition: all 0.5s;
+}
+.user-list-enter, .user-list-leave-to {
+  opacity: 0;
+}
+
+.user-list-enter {
+  transform: translateY(80px);
+}
+.user-list-leave-to {
+  transform: translateX(150px);
+}
+</style>
