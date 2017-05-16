@@ -1,6 +1,6 @@
 <template>
   <div class="homepage">
-    <h1>Randomusers</h1>
+    <h1 class="title">Randomusers</h1>
 
     <user-list></user-list>
 
