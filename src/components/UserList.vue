@@ -7,9 +7,12 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
+
 export default {
-  props: {
-    users: { type: Array, default: [] },
-  },
+  computed: mapState({
+    users: state => state.userList.users,
+  }),
 };
 </script>
