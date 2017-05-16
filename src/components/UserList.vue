@@ -5,6 +5,8 @@
     </div>
 
     <button
+      class="button is-primary"
+      :class="{'is-loading': usersFetchInProgress}"
       @click="fetchMoreUsers()">
       Fetch more users
     </button>
