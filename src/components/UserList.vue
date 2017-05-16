@@ -1,8 +1,6 @@
 <template>
   <div class="user-list">
-    <div v-for="user in users">
-      <h3>{{ user.email }}</h3>
-    </div>
+    <user-item v-for="user in users" :user="user" :key="user.email"></user-item>
 
     <button
       class="button is-primary"
@@ -16,9 +14,11 @@
 
 <script>
 import { mapState } from 'vuex';
+import UserItem from '@/components/UserItem';
 
 
 export default {
+  components: { UserItem },
   computed: mapState({
     users: state => state.userList.users,
     usersFetchInProgress: state => state.userList.fetchInProgress,
