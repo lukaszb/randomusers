@@ -25,15 +25,23 @@
 </template>
 
 
-<script>
-export default {
+<script lang="vue-ts">
+import Vue from 'vue';
+import Component from 'vue-class-component';
+
+
+@Component({
   props: ['user'],
-  methods: {
-    removeUser() {
-      this.$store.dispatch('userList/removeUser', { email: this.user.email });
-    },
-  },
-};
+})
+export default class UserItem extends Vue {
+  user : any
+  $store: any
+
+  removeUser() {
+    console.log(' => User:', this.user);
+    this.$store.dispatch('userList/removeUser', { email: this.user.email });
+  }
+}
 </script>
 
 <style>
