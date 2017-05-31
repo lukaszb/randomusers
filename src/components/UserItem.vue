@@ -2,7 +2,7 @@
   <div class="columns">
     <div class="column is-8 is-offset-2">
 
-      <div class="card user-card">
+      <div class="card user-card" :class="{'animated pulse': justClicked}" @click="clicked()">
 
         <div class="card-content">
           <div class="media">
@@ -28,9 +28,25 @@
 <script>
 export default {
   props: ['user'],
+  data() {
+    return {
+      justClicked: false,
+    };
+  },
   methods: {
     removeUser() {
       this.$store.dispatch('userList/removeUser', { email: this.user.email });
+    },
+    clicked() {
+      console.log(' => clicked on user', this.user.name);
+      this.showClick();
+    },
+    showClick() {
+      const self = this;
+      self.justClicked = true;
+      setTimeout(() => {
+        self.justClicked = false;
+      }, 1000);
     },
   },
 };
@@ -40,6 +56,10 @@ export default {
 .image img {
   border: 2px solid #efe;
   border-radius: 50%;
+}
+
+.user-card {
+  cursor: pointer;
 }
 
 .user-card .delete {
