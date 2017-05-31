@@ -30,7 +30,12 @@
 
     <br/>
 
-    <user-item v-for="user in users" :user="user" :key="user.email"></user-item>
+    <user-item
+      v-for="user in users"
+      :user="user"
+      :key="user.email"
+      @voted="voteForUser(user, $event)"
+    />
 
   </div>
 </template>
@@ -46,7 +51,7 @@ export default {
     this.$refs.searchInput.focus();
   },
   data() {
-    return { search: '' };
+    return { search: '', maxVotes: 0 };
   },
   computed: mapState({
     users(state) {
@@ -67,6 +72,13 @@ export default {
     fetchMoreUsers() {
       this.$store.dispatch('userList/fetch');
       this.$refs.searchInput.focus();
+    },
+    voteForUser(user, { votes }) {
+      console.log(' =>', votes, ' votes for', user);
+      if (votes > this.maxVotes) {
+        this.maxVotes = votes;
+        this.king = user;
+      }
     },
   },
 };

@@ -31,6 +31,7 @@ export default {
   data() {
     return {
       justClicked: false,
+      votes: 0,
     };
   },
   methods: {
@@ -38,7 +39,8 @@ export default {
       this.$store.dispatch('userList/removeUser', { email: this.user.email });
     },
     clicked() {
-      console.log(' => clicked on user', this.user.name);
+      this.votes += 1;
+      this.$emit('voted', { votes: this.votes });
       this.showClick();
     },
     showClick() {
