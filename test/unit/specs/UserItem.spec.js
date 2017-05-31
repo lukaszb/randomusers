@@ -1,3 +1,4 @@
+import sinon from 'sinon';
 import Vue from 'vue';
 import UserItem from '@/components/UserItem';
 
@@ -14,6 +15,15 @@ describe('UserItem.vue', () => {
     const vm = getVm({ user });
     expect(vm.$el.querySelector('.title').textContent)
       .to.equal('designer Joe Doe');
+  });
+
+  it('should dispatch store action when removeUser method is called', () => {
+    const vm = getVm({ user });
+    vm.$store = { dispatch: sinon.spy() };
+
+    vm.removeUser();
+
+    expect(vm.$store.dispatch).to.have.been.calledWith('userList/removeUser', { email: 'joe@doe.com' });
   });
 });
 
