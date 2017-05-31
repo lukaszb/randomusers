@@ -18,7 +18,7 @@
           <div class="level-item">
             <div class="field">
               <p class="control">
-                <input class="input" v-model="search" placeholder="Search"/>
+                <input ref="searchInput" class="input" v-model="search" placeholder="Search"/>
               </p>
             </div>
           </div>
@@ -42,6 +42,9 @@ import UserItem from '@/components/UserItem';
 
 export default {
   components: { UserItem },
+  mounted() {
+    this.$refs.searchInput.focus();
+  },
   data() {
     return { search: '' };
   },
@@ -63,6 +66,7 @@ export default {
   methods: {
     fetchMoreUsers() {
       this.$store.dispatch('userList/fetch');
+      this.$refs.searchInput.focus();
     },
   },
 };
